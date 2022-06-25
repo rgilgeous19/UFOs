@@ -34,4 +34,36 @@ function buildTable(data) {
 });
 
 }
+//adding filters
+
+function handleClick() {
+
+    // grabbing the datetime valye from the filter
+
+    let date = d3.select("datetime").property("value");
+
+    let filteredData = tableData;
+
+    // checking to see if date was entered and filtered the data using that data
+
+    if (date) {
+
+        filteredData = filteredData.filter(row => row.datetime === date);
+
+    }
+
+
+    // rebuild the table using filtered data and if no date was entered, the filtereddata will just be the original tabledata
+
+    buildTable(filteredData);
+
+}
+
+// Attach an event to listen for the form button
+
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+// Build the table when the page loads
+
+buildTable(tableData);
 
