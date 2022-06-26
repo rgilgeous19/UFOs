@@ -5,35 +5,26 @@ const tableData = data;
 var tbody = d3.select("tbody");
 
 function buildTable(data) {
-
-    //clearing out any existing data
+    // First, clear out any existing data
     tbody.html("");
-
-    //loop through each object in the data and append a row andcells for each value in the row
-
+  
+    // Next, loop through each object in the data
+    // and append a row and cells for each value in the row
     data.forEach((dataRow) => {
-        let row = tbody.append("tr");
-
-
-        //loop through each field in the datarow and add each value as a table cell
-
-        Object.values(dataRow).forEach((val) => {
-            let cell = row.append("td");
-
-            cell.text(val);
-
-
+      // Append a row to the table body
+      let row = tbody.append("tr");
+  
+      // Loop through each field in the dataRow and add
+      // each value as a table cell (td)
+      Object.values(dataRow).forEach((val) => {
+        let cell = row.append("td");
+        cell.text(val);
         }
+      );
+    });
+  }
 
-
-
-    );
-
-
-
-});
-
-}
+var filters = {};
 //adding filters
 
 function handleClick() {
@@ -50,7 +41,7 @@ function handleClick() {
 
         filteredData = filteredData.filter(row => row.datetime === date);
 
-    }
+    };
 
 
     // rebuild the table using filtered data and if no date was entered, the filtereddata will just be the original tabledata
